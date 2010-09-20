@@ -1,12 +1,12 @@
 /* Calculate the day on which any date falls using Zeller's congruence */
 
 #include <stdio.h>
-main() {
+int main() {
 	int Day, Month, Year, YearInCentury, Century, AdjustedMonth, DayOfWeek;
 	char ch;
 
-	printf("Write a day in the form day/month/year\n");
-	scanf("%d%c%d%c%d", &Day, &ch, &Month, &ch, &Year);
+	printf("Write a day in the form month/day/year\n");
+	scanf("%d%c%d%c%d", &Month, &ch, &Day, &ch, &Year);
 
 	do { /* start of loop */
 		YearInCentury = Year % 100; Century = Year / 100;
@@ -24,7 +24,7 @@ main() {
 		  YearInCentury / 4 + Century / 4 - 2 * Century) % 7;
 
 		/* Print the result */
-		printf("\n%d/%d/%d is a ", Day, Month, Year);
+		printf("\n%d/%d/%d is a ", Month, Day, Year);
 		switch(DayOfWeek) {
 			case 0: printf("Sunday\n");		break;
 			case 1: printf("Monday\n");		break;
@@ -35,6 +35,8 @@ main() {
 			case 6: printf("Saturday\n");	break;
 		}
 		printf("Write another date: (0/0/0 will stop the program)\n");
-		scanf("%d%c%d%c%d", &Day, &ch, &Month, &ch, &Year);
+		scanf("%d%c%d%c%d", &Month, &ch, &Day, &ch, &Year);
 	} while (Year > 0); /* end of loop */
+
+	return 0;
 }
